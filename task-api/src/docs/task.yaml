@@ -26,6 +26,8 @@ paths:
                   type: string
                 description:
                   type: string
+                completed:
+                  type: boolean
       responses:
         201:
           description: Task created
@@ -63,6 +65,8 @@ paths:
                   type: string
                 description:
                   type: string
+                completed:
+                  type: boolean
       responses:
         200:
           description: Task updated
