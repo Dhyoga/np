@@ -1,0 +1,35 @@
+services:
+  np-fe:
+    build:
+      context: ./blog
+    ports:
+      - "5000:80"
+    networks:
+      - np-network
+
+  np-be:
+    build:
+      context: ./task-api
+    ports:
+      - "3000:3000"
+    networks:
+      - np-network
+    environment:
+      DATABASE_URL: "postgresql://user:password@db:5432/nestpay"
+
+  db:
+    image: postgres:17-alpine
+    container_name: postgres
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: nestpay
+    ports:
+      - "5432:5432"
+    networks:
+      - np-network
+
+networks:
+  np-network:
+    driver: bridge
+
